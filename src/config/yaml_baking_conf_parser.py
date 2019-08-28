@@ -156,7 +156,7 @@ class BakingYamlConfParser(YamlConfParser):
                                          "Public key is not revealed.\n"
                                          "Use command 'reveal key for <src>' to reveal your public key. \n"
                                          "For implicit accounts, setting your account as delegate is enough.\n"
-                                         "For more information please refer to tezos command line interface."
+                                         "For more information please refer to dune command line interface."
                                          .format(pymnt_addr))
 
         # if not self.block_api.get_revelation(conf_obj[('%s_manager' % PAYMENT_ADDRESS)]):
@@ -164,7 +164,7 @@ class BakingYamlConfParser(YamlConfParser):
         #                                 "Public key of Manager ({}) is not revealed.\n"
         #                                 "Use command 'reveal key for <src>' to reveal your public key. \n"
         #                                 "For implicit accounts, setting your account as delegate is enough.\n"
-        #                                 "For more information please refer to tezos command line interface."
+        #                                 "For more information please refer to dune command line interface."
         #                                 .format(pymnt_addr, conf_obj[('%s_manager' % PAYMENT_ADDRESS)]))
 
     def check_sk(self, addr_obj, pkh):
@@ -180,7 +180,7 @@ class BakingYamlConfParser(YamlConfParser):
         # key_name must has a length of 36 and starts with tz or KT, an alias is not expected
         if len(baking_address) == PKH_LENGHT:
             if not baking_address.startswith("dn"):
-                raise ConfigurationException("Baking address must be a valid tz address")
+                raise ConfigurationException("Baking address must be a valid dn address")
         else:
             raise ConfigurationException("Baking address length must be {}".format(PKH_LENGHT))
 

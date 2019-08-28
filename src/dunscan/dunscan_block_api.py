@@ -1,26 +1,26 @@
 import requests
 
 from api.block_api import BlockApi
-from exception.tzscan import TzScanException
+from exception.dunscan import DunScanException
 from log_config import main_logger
 
 logger = main_logger
 
-HEAD_API = {'MAINNET': {'HEAD_API_URL': 'https://api%MIRROR%.dunscan.io/v2/head'},
-            'ALPHANET': {'HEAD_API_URL': 'http://api.testnet.dunscan.io/v2/head'},
-            'ZERONET': {'HEAD_API_URL': 'http://api.zeronet.dunscan.io/v2/head'}
+HEAD_API = {'MAINNET': {'HEAD_API_URL': 'https://api.dunscan.io/v3/head'},
+            'TESTNET': {'HEAD_API_URL': 'http://api%MIRROR%.testnet.dunscan.io/v3/head'},
+            'DEVNET': {'HEAD_API_URL': 'http://api.devnet.dunscan.io/v3/head'}
             }
 
-REVELATION_API = {'MAINNET': {'HEAD_API_URL': 'https://api%MIRROR%.dunscan.io/v1/operations/%PKH%?type=Reveal'},
-                  'ALPHANET': {'HEAD_API_URL': 'https://api.testnet.dunscan.io/v1/operations/%PKH%?type=Reveal'},
-                  'ZERONET': {'HEAD_API_URL': 'https://api.zeronet.dunscan.io/v1/operations/%PKH%?type=Reveal'}
+REVELATION_API = {'MAINNET': {'HEAD_API_URL': 'https://api.dunscan.io/v3/operations/%PKH%?type=Reveal'},
+                  'TESTNET': {'HEAD_API_URL': 'https://api%MIRROR%.testnet.dunscan.io/v3/operations/%PKH%?type=Reveal'},
+                  'DEVNET': {'HEAD_API_URL': 'https://api.devnet.dunscan.io/v3/operations/%PKH%?type=Reveal'}
                   }
 
 
-class TzScanBlockApiImpl(BlockApi):
+class DunScanBlockApiImpl(BlockApi):
 
     def __init__(self, nw, mirror_selector):
-        super(TzScanBlockApiImpl, self).__init__(nw)
+        super(DunScanBlockApiImpl, self).__init__(nw)
 
         self.head_api = HEAD_API[nw['NAME']]
         if self.head_api is None:
@@ -39,11 +39,11 @@ class TzScanBlockApiImpl(BlockApi):
         if resp.status_code != 200:
             # This means something went wrong.
             self.mirror_selector.validate_mirrors()
-            raise TzScanException('GET {} {}'.format(uri, resp.status_code))
+            raise DunScanException('GET {} {}'.format(uri, resp.status_code))
         root = resp.json()
 
         if verbose:
-            logger.debug("Response from tzscan is: {}".format(root))
+            logger.debug("Response from dunscan is: {}".format(root))
 
         current_level = int(root["level"])
 
@@ -59,10 +59,10 @@ class TzScanBlockApiImpl(BlockApi):
         if resp.status_code != 200:
             # This means something went wrong.
             self.mirror_selector.validate_mirrors()
-            raise TzScanException('GET {} {}'.format(uri, resp.status_code))
+            raise DunScanException('GET {} {}'.format(uri, resp.status_code))
         root = resp.json()
 
         if verbose:
-            logger.debug("Response from tzscan is: {}".format(root))
+            logger.debug("Response from dunscan is: {}".format(root))
 
         return len(root) > 0

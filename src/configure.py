@@ -39,7 +39,7 @@ messages = {'hello':'This application will help you create configuration file fo
     , 'servicefee' : 'Specify service fee [0:100]'
     , 'foundersmap' : "Specify FOUNDERS in form 'PKH1':share1,'PKH2':share2,... (Mind quotes) Type enter to leave empty"
     , 'ownersmap' : "Specify OWNERS in form 'pk1':share1,'pkh2':share2,... (Mind quotes) Type enter to leave empty"
-    , 'mindelegation' : "Specify minimum delegation amount in tezos. Type enter for 0"
+    , 'mindelegation' : "Specify minimum delegation amount in dune. Type enter for 0"
     , 'mindelegationtarget' : "Specify where should shares of delegators failing to satisfy minimum delegation amount go. TOB: leave at balance, TOF: to founders, TOE: to everybody, default is TOB"
     , 'exclude' : "Add excluded address in form of PKH,target. Share of the exluded address will go to target. Possbile targets are= TOB: leave at balance, TOF: to founders, TOE: to everybody. Type enter to skip"
     , 'redirect' : "Add redirected address in form of PKH1,PKH2. Payments for PKH1 will go to PKH2. Type enter to skip"
@@ -69,7 +69,7 @@ def onbakingaddress(input):
     if not input.startswith("dn"):
         printe("Only tz addresses are allowed")
         return
-    provider_factory = ProviderFactory("tzscan")
+    provider_factory = ProviderFactory("dunscan")
     global parser
     parser = BakingYamlConfParser(None, wllt_clnt_mngr, provider_factory, network_config, args.node_addr)
     parser.set(BAKING_ADDRESS, input)
@@ -339,9 +339,9 @@ def main(args):
     client_path = get_client_path([x.strip() for x in args.executable_dirs.split(',')],
                                   args.docker, args.network, args.verbose)
 
-    logger.debug("Tezos client path is {}".format(client_path))
-    
-    # 4. get network config     
+    logger.debug("Dune client path is {}".format(client_path))
+
+    # 4. get network config
     config_client_manager = SimpleClientManager(client_path)
     network_config_map = init_network_config(args.network, config_client_manager, args.node_addr)
     global network_config
@@ -377,7 +377,7 @@ def main(args):
         print("Configuration file is created at '{}'".format(config_file_path))
 
 def load_config_file(wllt_clnt_mngr, network_config, master_cfg):
-    provider_factory = ProviderFactory("tzscan")
+    provider_factory = ProviderFactory("dunscan")
     parser = BakingYamlConfParser(None, wllt_clnt_mngr, provider_factory, network_config, args.node_addr)
     parser.parse()
     parser.validate()

@@ -164,12 +164,12 @@ class BatchPayer():
     def log_processed_items(self, payment_logs):
         if payment_logs:
             for pl in payment_logs:
-                logger.debug("Reward already %s for cycle %s address %s amount %f tz type %s", pl.paid, pl.cycle, pl.address, pl.amount, pl.type)
+                logger.debug("Reward already %s for cycle %s address %s amount %f dn type %s", pl.paid, pl.cycle, pl.address, pl.amount, pl.type)
 
     def log_non_trivial_items(self, payment_logs):
         if payment_logs:
             for pl in payment_logs:
-                logger.debug("Reward not trivial for address %s amount %f tz type %s", pl.address, pl.amount, pl.type)
+                logger.debug("Reward not trivial for address %s amount %f dn type %s", pl.address, pl.amount, pl.type)
 
     def pay_single_batch(self, payment_items, op_counter, verbose=None, dry_run=None):
 
@@ -237,7 +237,7 @@ class BatchPayer():
         content_list = []
 
         for payment_item in payment_records:
-            pymnt_amnt = payment_item.amount  # expects in micro tezos
+            pymnt_amnt = payment_item.amount  # expects in micro dune
 
             assert pymnt_amnt >= ZERO_THRESHOLD # zero check, zero amounts needs to be filtered out earlier
 

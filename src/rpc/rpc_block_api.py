@@ -30,9 +30,9 @@ from cli.wallet_client_manager import WalletClientManager
 
 def test_get_revelation():
 
-    wllt_clnt_mngr = WalletClientManager("~/tezos-alpha/tezos-client", "", "", "", True)
+    wllt_clnt_mngr = WalletClientManager("~/dune-alpha/dune-client", "", "", "", True)
 
-    address_api = RpcBlockApiImpl({"NAME":"ALPHANET"}, wllt_clnt_mngr, "127.0.0.1:8732")
-    print(address_api.get_revelation("tz1N5cvoGZFNYWBp2NbCWhaRXuLQf6e1gZrv"))
+    address_api = RpcBlockApiImpl({"NAME":"TESTNET"}, wllt_clnt_mngr, "127.0.0.1:8732")
+    print(address_api.get_revelation("dn1JaWseLoDzubj4Qu1vaPi3brrfUcjdhMJU"))
     print(address_api.get_revelation("KT1FXQjnbdqDdKNpjeM6o8PF1w8Rn2j8BmmG"))
-    print(address_api.get_revelation("tz1YVxe7FFisREKXWNxdrrwqvw3o2jeXzaNb"))
+    print(address_api.get_revelation("dn1UzraxKVhVnKrmtuPMvZ5Tzta3rFfNHyqP"))

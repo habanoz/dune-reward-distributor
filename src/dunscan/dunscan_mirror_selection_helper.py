@@ -5,15 +5,15 @@ from requests import ReadTimeout, ConnectTimeout
 
 from log_config import main_logger
 
-nb_delegators_api = {'MAINNET': {'API_URL': 'http://api%MIRROR%.dunscan.io/v3/head'},
-                     'ALPHANET': {'API_URL': 'http://api.testnet.dunscan.io/v3/head'},
-                     'ZERONET': {'API_URL': 'http://api.zeronet.dunscan.io/v3/head'}
+nb_delegators_api = {'MAINNET': {'API_URL': 'http://api.dunscan.io/v3/head'},
+                     'TESTNET': {'API_URL': 'http://api%MIRROR%.testnet.dunscan.io/v3/head'},
+                     'DEVNET': {'API_URL': 'http://api.devnet.dunscan.io/v3/head'}
                      }
 
 logger = main_logger
 
 
-class TzScanMirrorSelector:
+class DunScanMirrorSelector:
     def __init__(self, nw) -> None:
         super().__init__()
         self.nw_name = nw['NAME']
@@ -34,7 +34,7 @@ class TzScanMirrorSelector:
                 tmp_mirrors.append(mirror)
 
         if not tmp_mirrors:
-            logger.error("Unable to find a live tzscan mirror. Consider using RPC api.")
+            logger.error("Unable to find a live dunscan mirror. Consider using RPC api.")
 
         self.mirrors = tmp_mirrors
 

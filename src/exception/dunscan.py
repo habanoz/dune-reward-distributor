@@ -1,0 +1,2 @@
+class DunScanException(Exception):
+    pass

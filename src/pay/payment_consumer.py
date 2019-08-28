@@ -179,7 +179,7 @@ class PaymentConsumer(threading.Thread):
         n_d_type = len([pl for pl in payment_logs if pl.type == TYPE_DELEGATOR])
         n_m_type = len([pl for pl in payment_logs if pl.type == TYPE_MERGED])
         stats_dict = {}
-        stats_dict['tot_amnt'] = int(sum([rl.amount for rl in payment_logs]) / 1e+9)  # in 1K tezos
+        stats_dict['tot_amnt'] = int(sum([rl.amount for rl in payment_logs]) / 1e+9)  # in 1K dun
         stats_dict['nb_pay'] = int(len(payment_logs) / 10)
         stats_dict['nb_failed'] = nb_failed
         stats_dict['nb_unkwn'] = nb_injected
@@ -193,7 +193,7 @@ class PaymentConsumer(threading.Thread):
         stats_dict['trdver'] = version.version
         if self.args:
             stats_dict['m_run'] = 1 if self.args.background_service else 0
-            stats_dict['m_prov'] = 0 if self.args.reward_data_provider == 'tzscan' else 1
+            stats_dict['m_prov'] = 0 if self.args.reward_data_provider == 'dunscan' else 1
             m_relov = 0
             if self.args.release_override > 0:
                 m_relov = 1

@@ -1,6 +1,6 @@
 import requests
 
-from exception.tzscan import TzScanException
+from exception.dunscan import DunScanException
 from log_config import main_logger
 
 MAX_PER_PAGE = 50
@@ -10,20 +10,20 @@ logger = main_logger
 nb_delegators_call = 'nb_delegators/{}?cycle={}'
 rewards_split_call = 'rewards_split/{}?cycle={}&p={}&number={}'
 
-API = {'MAINNET': {'API_URL': 'http://api%MIRROR%.dunscan.io/v1/'},
-       'ALPHANET': {'API_URL': 'http://api.testnet.dunscan.io/v1/'},
-       'ZERONET': {'API_URL': 'http://api.zeronet.dunscan.io/v1/'}
+API = {'MAINNET': {'API_URL': 'http://api.dunscan.io/v3/'},
+       'TESTNET': {'API_URL': 'http://api%MIRROR%.testnet.dunscan.io/v3/'},
+       'DEVNET': {'API_URL': 'http://api.devnet.dunscan.io/v3/'}
        }
 
 
-class TzScanRewardProviderHelper:
+class DunScanRewardProviderHelper:
 
     def __init__(self, nw, baking_address, mirror_selector):
-        super(TzScanRewardProviderHelper, self).__init__()
+        super(DunScanRewardProviderHelper, self).__init__()
 
         self.api = API[nw['NAME']]
         if self.api is None:
-            raise TzScanException("Unknown network {}".format(nw))
+            raise DunScanException("Unknown network {}".format(nw))
 
         self.baking_address = baking_address
         self.mirror_selector = mirror_selector
@@ -37,11 +37,11 @@ class TzScanRewardProviderHelper:
         resp = requests.get(uri, timeout=5)
         if resp.status_code != 200:
             # This means something went wrong.
-            raise TzScanException('GET {} {}'.format(uri, resp.status_code))
+            raise DunScanException('GET {} {}'.format(uri, resp.status_code))
         root = resp.json()
 
         if verbose:
-            logger.debug("Response from tzscan is {}".format(root))
+            logger.debug("Response from dunscan is {}".format(root))
 
         return root
 
@@ -66,11 +66,11 @@ class TzScanRewardProviderHelper:
             resp = requests.get(uri, timeout=5)
 
             if verbose:
-                logger.debug("Response from tzscan is {}".format(resp))
+                logger.debug("Response from dunscan is {}".format(resp))
 
             if resp.status_code != 200:
                 # This means something went wrong.
-                raise TzScanException('GET {} {}'.format(uri, resp.status_code))
+                raise DunScanException('GET {} {}'.format(uri, resp.status_code))
 
             if p == 0:  # keep first result as basis; append 'delegators_balance' from other responses
                 root = resp.json()
