@@ -53,8 +53,8 @@ class TzScanRewardProviderHelper:
         p = 0
         root = {"delegate_staking_balance": 0, "delegators_nb": 0, "delegators_balance": [], "blocks_rewards": 0,
                 "endorsements_rewards": 0, "fees": 0, "future_blocks_rewards": 0, "future_endorsements_rewards": 0,
-                "gain_from_denounciation": 0, "lost_deposit_from_denounciation": 0, "lost_rewards_denounciation": 0,
-                "lost_fees_denounciation": 0}
+                "gain_from_denounciation": 0, "lost_deposit_from_denounciation": 0, "lost_rewards_denounciation_endorsement": 0,"lost_rewards_denounciation_baking": 0,
+                "lost_fees_denounciation_endorsement": 0,"lost_fees_denounciation_baking": 0}
 
         while nb_delegators_remaining > 0:
             uri = self.api['API_URL'].replace("%MIRROR%", str(self.mirror_selector.get_mirror())) + rewards_split_call. \
