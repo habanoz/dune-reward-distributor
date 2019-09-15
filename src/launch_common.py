@@ -38,7 +38,7 @@ def add_argument_provider(parser):
 
 
 def add_argument_config_dir(parser):
-    parser.add_argument("-f", "--config_dir", help="Directory to find baking configurations", default='~/pymnt/cfg')
+    parser.add_argument("-f", "--config_dir", help="Directory to find baking configurations", default='~/dune_pymnt/cfg')
 
 
 def add_argument_node_addr(parser):
