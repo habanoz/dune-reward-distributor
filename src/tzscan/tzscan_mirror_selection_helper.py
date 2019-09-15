@@ -5,9 +5,9 @@ from requests import ReadTimeout, ConnectTimeout
 
 from log_config import main_logger
 
-nb_delegators_api = {'MAINNET': {'API_URL': 'http://api%MIRROR%.tzscan.io/v3/head'},
-                     'ALPHANET': {'API_URL': 'http://api.alphanet.tzscan.io/v3/head'},
-                     'ZERONET': {'API_URL': 'http://api.zeronet.tzscan.io/v3/head'}
+nb_delegators_api = {'MAINNET': {'API_URL': 'http://api%MIRROR%.dunscan.io/v3/head'},
+                     'ALPHANET': {'API_URL': 'http://api.testnet.dunscan.io/v3/head'},
+                     'ZERONET': {'API_URL': 'http://api.zeronet.dunscan.io/v3/head'}
                      }
 
 logger = main_logger

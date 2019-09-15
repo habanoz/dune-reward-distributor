@@ -6,14 +6,14 @@ from log_config import main_logger
 
 logger = main_logger
 
-HEAD_API = {'MAINNET': {'HEAD_API_URL': 'https://api%MIRROR%.tzscan.io/v2/head'},
-            'ALPHANET': {'HEAD_API_URL': 'http://api.alphanet.tzscan.io/v2/head'},
-            'ZERONET': {'HEAD_API_URL': 'http://api.zeronet.tzscan.io/v2/head'}
+HEAD_API = {'MAINNET': {'HEAD_API_URL': 'https://api%MIRROR%.dunscan.io/v2/head'},
+            'ALPHANET': {'HEAD_API_URL': 'http://api.testnet.dunscan.io/v2/head'},
+            'ZERONET': {'HEAD_API_URL': 'http://api.zeronet.dunscan.io/v2/head'}
             }
 
-REVELATION_API = {'MAINNET': {'HEAD_API_URL': 'https://api%MIRROR%.tzscan.io/v1/operations/%PKH%?type=Reveal'},
-                  'ALPHANET': {'HEAD_API_URL': 'https://api.alphanet.tzscan.io/v1/operations/%PKH%?type=Reveal'},
-                  'ZERONET': {'HEAD_API_URL': 'https://api.zeronet.tzscan.io/v1/operations/%PKH%?type=Reveal'}
+REVELATION_API = {'MAINNET': {'HEAD_API_URL': 'https://api%MIRROR%.dunscan.io/v1/operations/%PKH%?type=Reveal'},
+                  'ALPHANET': {'HEAD_API_URL': 'https://api.testnet.dunscan.io/v1/operations/%PKH%?type=Reveal'},
+                  'ZERONET': {'HEAD_API_URL': 'https://api.zeronet.dunscan.io/v1/operations/%PKH%?type=Reveal'}
                   }
 
 

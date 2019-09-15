@@ -10,9 +10,9 @@ logger = main_logger
 nb_delegators_call = 'nb_delegators/{}?cycle={}'
 rewards_split_call = 'rewards_split/{}?cycle={}&p={}&number={}'
 
-API = {'MAINNET': {'API_URL': 'http://api%MIRROR%.tzscan.io/v1/'},
-       'ALPHANET': {'API_URL': 'http://api.alphanet.tzscan.io/v1/'},
-       'ZERONET': {'API_URL': 'http://api.zeronet.tzscan.io/v1/'}
+API = {'MAINNET': {'API_URL': 'http://api%MIRROR%.dunscan.io/v1/'},
+       'ALPHANET': {'API_URL': 'http://api.testnet.dunscan.io/v1/'},
+       'ZERONET': {'API_URL': 'http://api.zeronet.dunscan.io/v1/'}
        }
 
 
