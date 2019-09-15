@@ -46,4 +46,4 @@ def clear_terminal_chars(content):
     return result
 
 def not_indicator_line(line):
-    return "Warning" not in line[0:15] and "Disclaimer" not in line[0:15]
+    return "Warning" not in line[0:15] and "Disclaimer" not in line[0:15] and "Network Config" not in line[0:15]
