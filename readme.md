@@ -3,7 +3,9 @@
 
 ## Dune Reward Distributor : Run & Forget [![Build Status](https://travis-ci.com/habanoz/dune-reward-distributor.svg?branch=development)](https://travis-ci.com/habanoz/dune-reward-distributor)
 
-DISCLAIMER : DUNE REWARD DISTRIBUTOR IS PROVIDED AS IS. IT IS UNDER CONSTANT DEVELOPMENT. EVENT THOUGH IT IS WELL TESTED, PLEASE USE WITH CARE. ALWAYS MAKE A PRE-RUN IN DRY MODE BEFORE MAKING ACTUAL PAYMENTS. IF YOU WANT TO RUN IN SERVICE MODE DO IT AFTER YOU ARE CONFIDENT WITH THE APPLICATION. IN SERVICE MODE DO NOT UPDATE OFTEN.
+Dune Reward Distributor is a copy of Tezos Reward Distributor. Continuation or Support is not assured. If you are interested in the project indicate your support by giving a star and sending some tezos to following account.
+
+KT18bVwvyLBR1GAM1rBoiHzEXVNtXb5C3vEU
 
 ## Dune Reward Distributor
 TRD is a software for distributing baking rewards with delegators. This is not a script but a full scale application which can run in the background all the time. It can track cycles and make payments. It does not have to be used as a service, It can also be used interactively.
