@@ -66,7 +66,7 @@ def onbakingaddress(input):
         printe("Invalid baking address: " + traceback.format_exc())
         return
 
-    if not input.startswith("tz"):
+    if not input.startswith("dn"):
         printe("Only tz addresses are allowed")
         return
     provider_factory = ProviderFactory("tzscan")

@@ -70,7 +70,7 @@ class BatchPayer():
 
         # pymnt_addr has a length of 36 and starts with tz or KT then it is a public key has, else it is an alias
         if len(self.pymnt_addr) == PKH_LENGTH and (
-                self.pymnt_addr.startswith("KT") or self.pymnt_addr.startswith("tz")):
+                self.pymnt_addr.startswith("KT") or self.pymnt_addr.startswith("dn")):
             self.source = self.pymnt_addr
         else:
             known_contracts = self.wllt_clnt_mngr.get_known_contracts_by_alias()

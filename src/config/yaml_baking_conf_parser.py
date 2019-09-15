@@ -118,7 +118,7 @@ class BakingYamlConfParser(YamlConfParser):
         if not pymnt_addr:
             raise ConfigurationException("Payment address must be set")
 
-        if len(pymnt_addr) == PKH_LENGHT and (pymnt_addr.startswith("KT") or pymnt_addr.startswith("tz")):
+        if len(pymnt_addr) == PKH_LENGHT and (pymnt_addr.startswith("KT") or pymnt_addr.startswith("dn")):
 
             addr_obj = self.wllt_clnt_mngr.get_addr_dict_by_pkh(pymnt_addr)
 
@@ -179,7 +179,7 @@ class BakingYamlConfParser(YamlConfParser):
 
         # key_name must has a length of 36 and starts with tz or KT, an alias is not expected
         if len(baking_address) == PKH_LENGHT:
-            if not baking_address.startswith("tz"):
+            if not baking_address.startswith("dn"):
                 raise ConfigurationException("Baking address must be a valid tz address")
         else:
             raise ConfigurationException("Baking address length must be {}".format(PKH_LENGHT))

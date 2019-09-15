@@ -23,7 +23,7 @@ class WalletClientManager(SimpleClientManager):
 
     def get_manager_for_contract(self, pkh):
 
-        if pkh.startswith('tz'):
+        if pkh.startswith('dn'):
             return pkh
 
         if pkh in self.managers:
@@ -45,7 +45,7 @@ class WalletClientManager(SimpleClientManager):
         manager = None
         for line in response.splitlines():
             line = line.strip()
-            if line.startswith("tz"):
+            if line.startswith("dn"):
                 line = line.replace(" (", ':')
                 manager, alias_plus = line.split(":", maxsplit=1)
                 break
