@@ -1,11 +1,11 @@
 
 <img src="https://raw.githubusercontent.com/habanoz/trd-art/master/logo-narrow/trd_512__1.png" width="128" /> 
 
-## Tezos Reward Distributor : Run & Forget [![Build Status](https://travis-ci.com/habanoz/tezos-reward-distributor.svg?branch=development)](https://travis-ci.com/habanoz/tezos-reward-distributor)
+## Dune Reward Distributor : Run & Forget [![Build Status](https://travis-ci.com/habanoz/dune-reward-distributor.svg?branch=development)](https://travis-ci.com/habanoz/dune-reward-distributor)
 
-DISCLAIMER : TEZOS REWARD DISTRIBUTOR IS PROVIDED AS IS. IT IS UNDER CONSTANT DEVELOPMENT. EVENT THOUGH IT IS WELL TESTED, PLEASE USE WITH CARE. ALWAYS MAKE A PRE-RUN IN DRY MODE BEFORE MAKING ACTUAL PAYMENTS. IF YOU WANT TO RUN IN SERVICE MODE DO IT AFTER YOU ARE CONFIDENT WITH THE APPLICATION. IN SERVICE MODE DO NOT UPDATE OFTEN.
+DISCLAIMER : DUNE REWARD DISTRIBUTOR IS PROVIDED AS IS. IT IS UNDER CONSTANT DEVELOPMENT. EVENT THOUGH IT IS WELL TESTED, PLEASE USE WITH CARE. ALWAYS MAKE A PRE-RUN IN DRY MODE BEFORE MAKING ACTUAL PAYMENTS. IF YOU WANT TO RUN IN SERVICE MODE DO IT AFTER YOU ARE CONFIDENT WITH THE APPLICATION. IN SERVICE MODE DO NOT UPDATE OFTEN.
 
-## Tezos Reward Distributor
+## Dune Reward Distributor
 TRD is a software for distributing baking rewards with delegators. This is not a script but a full scale application which can run in the background all the time. It can track cycles and make payments. It does not have to be used as a service, It can also be used interactively.
 
 TRD supports complex payments, pays in batches, provides two back ends for calculations: rpc and tzcan. Developped and tested extensively by the community. For more information please check following article.
@@ -28,13 +28,13 @@ sudo apt-get -y install python3-pip
 Download the application repository using git clone:
 
 ```
-git clone https://github.com/habanoz/tezos-reward-distributor
+git clone https://github.com/habanoz/dune-reward-distributor
 ```
 
 To install required modules, use pip with requirements.txt provided.
 
 ```
-cd tezos-reward-distributor
+cd dune-reward-distributor
 pip3 install -r requirements.txt
 ```
 
@@ -60,7 +60,7 @@ python3 src/main.py
 
 For more example commands please see wiki page:
 
-https://github.com/habanoz/tezos-reward-distributor/wiki/How-to-Run
+https://github.com/habanoz/dune-reward-distributor/wiki/How-to-Run
 
 
 ### Baker Configuration:
@@ -68,14 +68,14 @@ https://github.com/habanoz/tezos-reward-distributor/wiki/How-to-Run
 Each baker has its own configuration and policy. A payment system should be flexible enough to cover needs of bakers. The application uses a yaml file for loading baker specific configurations. 
 
 Configuration tool can be used to create baking configuration file interactively. Also an example configuration file is present under examples directory. For more information on configuration details please see our wiki page:
-https://github.com/habanoz/tezos-reward-distributor/wiki/Configuration
+https://github.com/habanoz/dune-reward-distributor/wiki/Configuration
 
-TRD is designed to work as a linux service. It expects use of tezos signer for encrypted payment accounts. Unencrypted payment accounts can be used without tezos signer. If a payment account is encrypted and not configured to be signed by tezos signer, TRD will freeze. For more information on payment addresses please refer to our wikipage:
-https://github.com/habanoz/tezos-reward-distributor/wiki/Payment-Address
+TRD is designed to work as a linux service. It expects use of dune signer for encrypted payment accounts. Unencrypted payment accounts can be used without dune signer. If a payment account is encrypted and not configured to be signed by dune signer, TRD will freeze. For more information on payment addresses please refer to our wikipage:
+https://github.com/habanoz/dune-reward-distributor/wiki/Payment-Address
 
 ### Linux Service
 
-It is possible to add tezos-reward-distributer as a Linux service. It can run in the background. 
+It is possible to add dune-reward-distributer as a Linux service. It can run in the background. 
 
 If docker is used, make sure user is in docker group
 ```
@@ -90,7 +90,7 @@ sudo python3 service_add.py
 
 For more information please refer to wiki page:
 
-https://github.com/habanoz/tezos-reward-distributor/wiki/Linux-Service
+https://github.com/habanoz/dune-reward-distributor/wiki/Linux-Service
 
 
 ### Email Setup
@@ -104,9 +104,5 @@ fee.ini file contains details about transaction fees. Currently the fee value sp
 ### Contributions
 Please refer to contributions guide on wiki pages.
 
-https://github.com/habanoz/tezos-reward-distributor/wiki/How-to-Contribute
-
-### Funding
-
-TRD is an open source project and will stay like this. It is not funded by any organization. A grant request is rejected by Tezos Foundation. However, I will try to continue to enhance the software and support the community.
+https://github.com/habanoz/dune-reward-distributor/wiki/How-to-Contribute
 
