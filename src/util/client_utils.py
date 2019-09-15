@@ -5,7 +5,7 @@ from log_config import main_logger
 
 DOCKER_CLIENT_EXE = "%network%.sh"
 DOCKER_CLIENT_EXE_SUFFIX = " client"
-REGULAR_CLIENT_EXE = "tezos-client"
+REGULAR_CLIENT_EXE = "dune-client"
 
 logger = main_logger
 
