@@ -65,7 +65,7 @@ def add_argument_executable_dirs(parser):
                         help="Comma separated list of directories to search for client executable. Prefer single "
                              "location when setting client directory. If -d is set, point to location where tezos docker "
                              "script (e.g. mainnet.sh for mainnet) is found. Default value is given for minimum configuration effort.",
-                        default='~/,~/tezos')
+                        default='~/,~/dune-network')
 
 
 def add_argument_docker(parser):
