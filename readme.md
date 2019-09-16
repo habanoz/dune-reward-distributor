@@ -3,7 +3,7 @@
 
 ## Dune Reward Distributor : Run & Forget [![Build Status](https://travis-ci.com/habanoz/dune-reward-distributor.svg?branch=development)](https://travis-ci.com/habanoz/dune-reward-distributor)
 
-Dune Reward Distributor is a copy of Tezos Reward Distributor. Continuation or Support is not assured. If you are interested in the project indicate your support by giving a star and sending some tezos to following account.
+Dune Reward Distributor is a copy of Tezos Reward Distributor. It is not ready yet. Continuation or Support is not assured. If you are interested in the project indicate your support by giving a star and sending some tezos to following account.
 
 KT18bVwvyLBR1GAM1rBoiHzEXVNtXb5C3vEU
 
