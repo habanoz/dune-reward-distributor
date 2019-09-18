@@ -29,7 +29,7 @@ def add_argument_network(parser):
 
 
 def add_argument_reports_base(parser):
-    parser.add_argument("-r", "--reports_base", help="Base directory to create reports", default='~/pymnt/reports')
+    parser.add_argument("-r", "--reports_base", help="Base directory to create reports", default='~/dune_pymnt/reports')
 
 
 def add_argument_provider(parser):
