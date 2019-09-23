@@ -3,9 +3,12 @@
 
 ## Dune Reward Distributor : Run & Forget [![Build Status](https://travis-ci.com/habanoz/dune-reward-distributor.svg?branch=development)](https://travis-ci.com/habanoz/dune-reward-distributor)
 
-Dune Reward Distributor is a copy of Tezos Reward Distributor. It is not ready yet. Continuation or Support is not assured. If you are interested in the project indicate your support by giving a star and sending some tezos to following account.
+Dune Reward Distributor is a copy of Tezos Reward Distributor. This is my gift to the community. As the protocol evolves, DRD will need to be modified. However, I am not planning to maintain the project. Contributions from the community members are welcome. 
 
-KT18bVwvyLBR1GAM1rBoiHzEXVNtXb5C3vEU
+Please refer to the contributions guide.
+
+https://github.com/habanoz/tezos-reward-distributor/wiki/How-to-Contribute
+
 
 ## Dune Reward Distributor
 TRD is a software for distributing baking rewards with delegators. This is not a script but a full scale application which can run in the background all the time. It can track cycles and make payments. It does not have to be used as a service, It can also be used interactively.
@@ -103,8 +106,4 @@ Get emails for payment reports at each cycle. Fill email.ini file with your emai
 
 fee.ini file contains details about transaction fees. Currently the fee value specified under DEFAULT domain is used as fee amount. It is in mutez.
 
-### Contributions
-Please refer to contributions guide on wiki pages.
-
-https://github.com/habanoz/tezos-reward-distributor/wiki/How-to-Contribute
 
