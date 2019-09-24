@@ -1,8 +1,8 @@
 from api.reward_api import RewardApi
+from dunscan.dunscan_reward_provider_helper import DunScanRewardProviderHelper
 
 from log_config import main_logger
 from model.reward_provider_model import RewardProviderModel
-from dunscan.dunscan import DunScanRewardProviderHelper
 
 logger = main_logger
 

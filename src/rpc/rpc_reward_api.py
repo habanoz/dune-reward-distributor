@@ -1,11 +1,11 @@
 from api.reward_api import RewardApi
+from dunscan.dunscan_reward_api import DunscanRewardApiImpl
 
 from log_config import main_logger
 from model.reward_provider_model import RewardProviderModel
 from dunscan.dunscan_mirror_selection_helper import DunScanMirrorSelector
 from cli.cmd_manager import CommandManager
 from util.rpc_utils import parse_json_response, extract_json_part
-from dunscan.dunscan_reward_api import DunScanRewardApiImpl
 
 logger = main_logger
 
@@ -32,7 +32,7 @@ class RpcRewardApiImpl(RewardApi):
         if self.validate:
             mirror_selector = DunScanMirrorSelector(nw)
             mirror_selector.initialize()
-            self.validate_api = DunScanRewardApiImpl(nw, self.baking_address, mirror_selector)
+            self.validate_api = DunscanRewardApiImpl(nw, self.baking_address, mirror_selector)
 
     def get_nb_delegators(self, cycle, verbose=False):
         _, delegators = self.__get_delegators_and_delgators_balance(cycle,verbose )

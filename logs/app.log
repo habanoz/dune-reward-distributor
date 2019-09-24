@@ -21,3 +21,26 @@
 2019-09-15 12:25:30,664 - MainThread - Loading master configuration file C:\Users\7624/pymnt/cfg\master.yaml
 2019-09-15 12:25:30,675 - MainThread - Not found C:\Users\7624/tezos-client
 2019-09-15 12:25:30,675 - MainThread - Not found C:\Users\7624/tezos\tezos-client
+2019-09-24 23:10:21,150 - MainThread - Dune Reward Distributor is Starting
+2019-09-24 23:10:21,150 - MainThread - TRD version 5.13 is running in interactive mode.
+2019-09-24 23:10:21,150 - MainThread - Arguments Configuration = {
+ "network": "MAINNET",
+ "reward_data_provider": "dunscan",
+ "reports_base": "~/dune_pymnt/reports",
+ "config_dir": "~/dune_pymnt/cfg",
+ "node_addr": "127.0.0.1:8732",
+ "dry_run": false,
+ "dry_run_no_consumers": false,
+ "executable_dirs": "~/,~/dune-network",
+ "docker": false,
+ "verbose": false,
+ "background_service": false,
+ "do_not_publish_stats": false,
+ "run_mode": 1,
+ "release_override": 0,
+ "payment_offset": 0,
+ "initial_cycle": null
+}
+2019-09-24 23:10:21,159 - MainThread - Loading master configuration file C:\Users\7624/dune_pymnt/cfg\master.yaml
+2019-09-24 23:10:21,180 - MainThread - Not found C:\Users\7624/dune-client
+2019-09-24 23:10:21,180 - MainThread - Not found C:\Users\7624/dune-network\dune-client

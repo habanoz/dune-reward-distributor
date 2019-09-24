@@ -1,10 +1,9 @@
+from dunscan.dunscan_mirror_selection_helper import DunScanMirrorSelector
+from dunscan.dunscan_reward_api import DunscanRewardApiImpl
 from rpc.lrpc_reward_api import LRpcRewardApiImpl
 from rpc.prpc_reward_api import PRpcRewardApiImpl
 from rpc.rpc_block_api import RpcBlockApiImpl
-from rpc.rpc_reward_api import RpcRewardApiImpl
-from dunscan.dunscan import DunScanMirrorSelector
 from dunscan.dunscan_block_api import DunScanBlockApiImpl
-from dunscan.dunscan_reward_api import DunScanRewardApiImpl
 
 
 class ProviderFactory:
@@ -27,7 +26,7 @@ class ProviderFactory:
         elif self.provider == 'dunscan':
             if not self.mirror_selector:
                 self.init_mirror_selector(network_config)
-            return DunScanRewardApiImpl(network_config, baking_address, self.mirror_selector, verbose=self.verbose)
+            return DunscanRewardApiImpl(network_config, baking_address, self.mirror_selector, verbose=self.verbose)
 
         raise Exception("No supported reward data provider : {}".format(self.provider))
 
