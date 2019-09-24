@@ -2,21 +2,21 @@ from unittest import TestCase
 
 from calc.calculate_phase0 import CalculatePhase0
 from model import reward_log
-from tzscan.tzscan_mirror_selection_helper import TzScanMirrorSelector
-from tzscan.tzscan_reward_api import TzScanRewardApiImpl
-from tzscan.tzscan_reward_provider_helper import TzScanRewardProviderHelper
+from dunscan.dunscan_mirror_selection_helper import DunScanMirrorSelector
+from dunscan.dunscan_reward_api import DunScanRewardApiImpl
+from dunscan.dunscan_reward_provider_helper import DunScanRewardProviderHelper
 
-BAKING_ADDRESS = "tz1Z1tMai15JWUWeN2PKL9faXXVPMuWamzJj"
+BAKING_ADDRESS = "dn1VWnJRnF3vsa3tkYp3PqoCbV1eBRc5vJ2x"
 
 
 class TestCalculatePhase0(TestCase):
 
     def test_calculate(self):
         nw = {"NAME": "MAINNET"}
-        mirror_selector = TzScanMirrorSelector(nw)
+        mirror_selector = DunScanMirrorSelector(nw)
         mirror_selector.initialize()
 
-        api = TzScanRewardApiImpl(nw, BAKING_ADDRESS, mirror_selector)
+        api = DunScanRewardApiImpl(nw, BAKING_ADDRESS, mirror_selector)
         model = api.get_rewards_for_cycle_map(43)
 
         phase0 = CalculatePhase0(model)

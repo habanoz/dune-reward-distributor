@@ -76,7 +76,7 @@ def main(args):
                                   args.docker, args.network,
                                   args.verbose)
 
-    logger.debug("Tezos client path is {}".format(client_path))
+    logger.debug("Dune client path is {}".format(client_path))
 
     # 4. get network config
     config_client_manager = SimpleClientManager(client_path)

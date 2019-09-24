@@ -90,14 +90,14 @@ def main(args):
                                   args.docker, args.network,
                                   args.verbose)
 
-    logger.debug("Tezos client path is {}".format(client_path))
+    logger.debug("Dune client path is {}".format(client_path))
 
     # 4- get client path
     client_path = get_client_path([x.strip() for x in args.executable_dirs.split(',')],
                                   args.docker, args.network,
                                   args.verbose)
 
-    logger.debug("Tezos client path is {}".format(client_path))
+    logger.debug("Dune client path is {}".format(client_path))
 
     # 6- is it a reports run
     dry_run = args.dry_run
@@ -196,7 +196,7 @@ if __name__ == '__main__':
     add_argument_verbose(parser)
 
     parser.add_argument("paymentaddress",
-                        help="tezos account address (PKH) or an alias to make payments. If tezos signer is used "
+                        help="dune account address (PKH) or an alias to make payments. If dune signer is used "
                              "to sign for the address, it is necessary to use an alias.")
     parser.add_argument("payments_file", help="File of payment lines. Each line should contain PKH:amount. "
                                               "For example: KT1QRZLh2kavAJdrQ6TjdhBgjpwKMRfwCBmQ:123.33")

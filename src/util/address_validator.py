@@ -10,7 +10,7 @@ class AddressValidator:
     def validate(self, address):
         if len(address) == PKH_LENGHT:
             if not address.startswith("dn") and not address.startswith("KT"):
-                raise Exception("Incorrect input in {}, {} is Not a tz or KT address".format(self.context, address))
+                raise Exception("Incorrect input in {}, {} is Not a dn or KT address".format(self.context, address))
         else:
             raise Exception(
                 "Incorrect input in {}, address({}) length must be {}".format(self.context, address, PKH_LENGHT))

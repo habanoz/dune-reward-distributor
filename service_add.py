@@ -3,11 +3,11 @@ import sys
 
 
 def main():
-    path_template = "tezos-reward.service_template"
+    path_template = "dune-reward.service_template"
     dir_path = os.path.dirname(os.path.realpath(__file__))
-    path_service = os.path.join(dir_path, "tezos-reward.service")
-    # in windows ['C:', 'Users', 'user_name', 'tezos-reward-distributor']
-    # in linux ['', 'home', 'user_name', 'tezos-reward-distributor']
+    path_service = os.path.join(dir_path, "dune-reward.service")
+    # in windows ['C:', 'Users', 'user_name', 'dune-reward-distributor']
+    # in linux ['', 'home', 'user_name', 'dune-reward-distributor']
     path_split = dir_path.split(os.sep)
     username_from_path = path_split[2] if len(path_split) > 3 and path_split[1] in ['Users','home'] else None
     username_from_system = get_username()

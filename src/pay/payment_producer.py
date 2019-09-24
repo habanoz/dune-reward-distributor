@@ -9,7 +9,7 @@ from Constants import RunMode, PaymentStatus
 from log_config import main_logger
 from model.reward_log import RewardLog
 from model.rules_model import RulesModel
-from exception.tzscan import TzScanException
+from exception.dunscan import DunScanException
 from requests import ReadTimeout, ConnectTimeout
 from pay.double_payment_check import check_past_payment
 from pay.payment_batch import PaymentBatch
@@ -175,9 +175,9 @@ class PaymentProducer(threading.Thread, PaymentProducerABC):
                     # wait until current cycle ends
                     self.wait_until_next_cycle(nb_blocks_remaining)
 
-            except TzScanException:
-                logger.debug("Tzscan error at reward loop", exc_info=True)
-                logger.info("Tzscan error at reward loop, will try again.")
+            except DunScanException:
+                logger.debug("Dunscan error at reward loop", exc_info=True)
+                logger.info("Dunscan error at reward loop, will try again.")
             except Exception:
                 logger.error("Error at payment producer loop", exc_info=True)
 
@@ -231,16 +231,16 @@ class PaymentProducer(threading.Thread, PaymentProducerABC):
 
             return True
         except ReadTimeout:
-            logger.info("Tzscan call failed, will try again.")
-            logger.debug("Tzscan call failed", exc_info=False)
+            logger.info("Dunscan call failed, will try again.")
+            logger.debug("Dunscan call failed", exc_info=False)
             return False
         except ConnectTimeout:
-            logger.info("Tzscan connection failed, will try again.")
-            logger.debug("Tzscan connection failed", exc_info=False)
+            logger.info("Dunscan connection failed, will try again.")
+            logger.debug("Dunscan connection failed", exc_info=False)
             return False
-        except TzScanException:
-            logger.info("Tzscan error at reward loop, will try again.")
-            logger.debug("Tzscan error at reward loop", exc_info=False)
+        except DunScanException:
+            logger.info("Dunscan error at reward loop, will try again.")
+            logger.debug("Dunscan error at reward loop", exc_info=False)
             return False
         except Exception:
             logger.error("Error at payment producer loop, will try again.", exc_info=True)

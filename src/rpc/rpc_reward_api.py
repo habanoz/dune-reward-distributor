@@ -2,10 +2,10 @@ from api.reward_api import RewardApi
 
 from log_config import main_logger
 from model.reward_provider_model import RewardProviderModel
-from tzscan.tzscan_mirror_selection_helper import TzScanMirrorSelector
+from dunscan.dunscan_mirror_selection_helper import DunScanMirrorSelector
 from cli.cmd_manager import CommandManager
 from util.rpc_utils import parse_json_response, extract_json_part
-from tzscan.tzscan_reward_api import TzScanRewardApiImpl
+from dunscan.dunscan_reward_api import DunScanRewardApiImpl
 
 logger = main_logger
 
@@ -30,9 +30,9 @@ class RpcRewardApiImpl(RewardApi):
 
         self.validate = validate
         if self.validate:
-            mirror_selector = TzScanMirrorSelector(nw)
+            mirror_selector = DunScanMirrorSelector(nw)
             mirror_selector.initialize()
-            self.validate_api = TzScanRewardApiImpl(nw, self.baking_address, mirror_selector)
+            self.validate_api = DunScanRewardApiImpl(nw, self.baking_address, mirror_selector)
 
     def get_nb_delegators(self, cycle, verbose=False):
         _, delegators = self.__get_delegators_and_delgators_balance(cycle,verbose )
@@ -165,21 +165,21 @@ class RpcRewardApiImpl(RewardApi):
 
 
     def __validate_reward_data(self, reward_data_rpc, cycle):
-        reward_data_tzscan = self.validate_api.get_rewards_for_cycle_map(cycle)
-        if not (reward_data_rpc.delegate_staking_balance == int(reward_data_tzscan.delegate_staking_balance)):
-            raise Exception("Delegate staking balance from local node and tzscan are not identical. local node {}, tzscan {}".format(reward_data_rpc.delegate_staking_balance,reward_data_tzscan.delegate_staking_balance ))
+        reward_data_dunscan = self.validate_api.get_rewards_for_cycle_map(cycle)
+        if not (reward_data_rpc.delegate_staking_balance == int(reward_data_dunscan.delegate_staking_balance)):
+            raise Exception("Delegate staking balance from local node and dunscan are not identical. local node {}, dunscan {}".format(reward_data_rpc.delegate_staking_balance,reward_data_dunscan.delegate_staking_balance ))
 
-        if not (len(reward_data_rpc.delegator_balance_dict) == len(reward_data_tzscan.delegator_balance_dict)):
-            raise Exception("Delegators number from local node and tzscan are not identical.")
+        if not (len(reward_data_rpc.delegator_balance_dict) == len(reward_data_dunscan.delegator_balance_dict)):
+            raise Exception("Delegators number from local node and dunscan are not identical.")
 
         if (len(reward_data_rpc.delegator_balance_dict)) == 0:
             return
 
-        # delegators_balance_tzscan = [ int(reward_data_tzscan["delegators_balance"][i][1]) for i in range(len(reward_data_tzscan["delegators_balance"]))]
+        # delegators_balance_dunscan = [ int(reward_data_dunscan["delegators_balance"][i][1]) for i in range(len(reward_data_dunscan["delegators_balance"]))]
         # print(set(list(reward_data_rpc["delegators"].values())))
-        # print(set(delegators_balance_tzscan))
-        if not (reward_data_rpc.delegator_balance_dict == reward_data_tzscan.delegator_balance_dict):
-            raise Exception("Delegators' balances from local node and tzscan are not identical.")
+        # print(set(delegators_balance_dunscan))
+        if not (reward_data_rpc.delegator_balance_dict == reward_data_dunscan.delegator_balance_dict):
+            raise Exception("Delegators' balances from local node and dunscan are not identical.")
 
-        if not reward_data_rpc.total_reward_amount == reward_data_tzscan.total_reward_amount:
-            raise Exception("Total rewards from local node and tzscan are not identical.")
+        if not reward_data_rpc.total_reward_amount == reward_data_dunscan.total_reward_amount:
+            raise Exception("Total rewards from local node and dunscan are not identical.")

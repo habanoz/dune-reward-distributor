@@ -16,7 +16,7 @@ def print_banner(args, script_name):
 
     sleep(0.1)
 
-    logger.info("Tezos Reward Distributor" + script_name + " is Starting")
+    logger.info("Dune Reward Distributor" + script_name + " is Starting")
 
     if args.dry_run:
         logger.info(LINER)
@@ -24,7 +24,7 @@ def print_banner(args, script_name):
         logger.info(LINER)
 
 def add_argument_network(parser):
-    parser.add_argument("-N", "--network", help="network name", choices=['ZERONET', 'ALPHANET', 'MAINNET'],
+    parser.add_argument("-N", "--network", help="network name", choices=['DEVNET', 'TESTNET', 'MAINNET'],
                         default='MAINNET')
 
 
@@ -33,8 +33,8 @@ def add_argument_reports_base(parser):
 
 
 def add_argument_provider(parser):
-    parser.add_argument("-P", "--reward_data_provider", help="where reward data is provided. prpc=public rpc", choices=['tzscan', 'rpc','prpc'],
-                        default='tzscan')
+    parser.add_argument("-P", "--reward_data_provider", help="where reward data is provided. prpc=public rpc", choices=['dunscan', 'rpc','prpc'],
+                        default='dunscan')
 
 
 def add_argument_config_dir(parser):
@@ -63,7 +63,7 @@ def add_argument_dry_no_consumer(parser):
 def add_argument_executable_dirs(parser):
     parser.add_argument("-E", "--executable_dirs",
                         help="Comma separated list of directories to search for client executable. Prefer single "
-                             "location when setting client directory. If -d is set, point to location where tezos docker "
+                             "location when setting client directory. If -d is set, point to location where dune docker "
                              "script (e.g. mainnet.sh for mainnet) is found. Default value is given for minimum configuration effort.",
                         default='~/,~/dune-network')
 
