@@ -124,7 +124,7 @@ class BakingYamlConfParser(YamlConfParser):
 
             self.check_sk(addr_obj, pymnt_addr)
 
-            conf_obj[('__%s_type' % PAYMENT_ADDRESS)] = AddrType.KT if pymnt_addr.startswith("KT") else AddrType.TZ
+            conf_obj[('__%s_type' % PAYMENT_ADDRESS)] = AddrType.KT if pymnt_addr.startswith("KT") else AddrType.DN
             conf_obj[('__%s_pkh' % PAYMENT_ADDRESS)] = pymnt_addr
             conf_obj[('__%s_manager' % PAYMENT_ADDRESS)] = self.wllt_clnt_mngr.get_manager_for_contract(pymnt_addr)
 
@@ -136,7 +136,7 @@ class BakingYamlConfParser(YamlConfParser):
 
                 self.check_sk(addr_obj, pkh)
 
-                conf_obj[('__%s_type' % PAYMENT_ADDRESS)] = AddrType.KTALS if pkh.startswith("KT") else AddrType.TZALS
+                conf_obj[('__%s_type' % PAYMENT_ADDRESS)] = AddrType.KTALS if pkh.startswith("KT") else AddrType.DNALS
                 conf_obj[('__%s_pkh' % PAYMENT_ADDRESS)] = pkh
                 conf_obj[('__%s_manager' % PAYMENT_ADDRESS)] = self.wllt_clnt_mngr.get_manager_for_contract(pkh)
 

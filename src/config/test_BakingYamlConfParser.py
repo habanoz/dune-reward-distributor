@@ -48,7 +48,7 @@ class TestYamlAppConfParser(TestCase):
         self.assertEqual(cnf_prsr.get_conf_obj_attr('payment_address'), 'dn1VWnJRnF3vsa3tkYp3PqoCbV1eBRc5vJ2x')
         self.assertEqual(cnf_prsr.get_conf_obj_attr('__payment_address_pkh'), 'dn1VWnJRnF3vsa3tkYp3PqoCbV1eBRc5vJ2x')
         self.assertEqual(cnf_prsr.get_conf_obj_attr('__payment_address_manager'), 'dn1VWnJRnF3vsa3tkYp3PqoCbV1eBRc5vJ2x')
-        self.assertEqual(cnf_prsr.get_conf_obj_attr('__payment_address_type'), AddrType.TZ)
+        self.assertEqual(cnf_prsr.get_conf_obj_attr('__payment_address_type'), AddrType.DN)
         self.assertEqual(0, cnf_prsr.get_conf_obj_attr('min_delegation_amt'))
 
     def test_validate_no_founders_map(self):
@@ -85,7 +85,7 @@ class TestYamlAppConfParser(TestCase):
         self.assertEqual(cnf_prsr.get_conf_obj_attr('payment_address'), 'dn1VWnJRnF3vsa3tkYp3PqoCbV1eBRc5vJ2x')
         self.assertEqual(cnf_prsr.get_conf_obj_attr('__payment_address_pkh'), 'dn1VWnJRnF3vsa3tkYp3PqoCbV1eBRc5vJ2x')
         self.assertEqual(cnf_prsr.get_conf_obj_attr('__payment_address_manager'), 'dn1VWnJRnF3vsa3tkYp3PqoCbV1eBRc5vJ2x')
-        self.assertEqual(cnf_prsr.get_conf_obj_attr('__payment_address_type'), AddrType.TZ)
+        self.assertEqual(cnf_prsr.get_conf_obj_attr('__payment_address_type'), AddrType.DN)
         self.assertEqual(cnf_prsr.get_conf_obj_attr('founders_map'), dict())
         self.assertEqual(cnf_prsr.get_conf_obj_attr('specials_map'), dict())
         self.assertEqual(cnf_prsr.get_conf_obj_attr('supporters_set'), set())

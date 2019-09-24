@@ -355,7 +355,7 @@ class PaymentProducer(threading.Thread, PaymentProducerABC):
                     if pl.paid == PaymentStatus.INJECTED:
                         pl.paid = PaymentStatus.FAIL
                         nb_converted += 1
-                        logger.debug("Reward converted from %s to fail for cycle %s address %s amount %f tz type %s",
+                        logger.debug("Reward converted from %s to fail for cycle %s address %s amount %f dn type %s",
                                      pl.paid, pl.cycle, pl.address, pl.amount, pl.type)
 
                 if nb_converted:

@@ -67,7 +67,7 @@ def onbakingaddress(input):
         return
 
     if not input.startswith("dn"):
-        printe("Only tz addresses are allowed")
+        printe("Only dn addresses are allowed")
         return
     provider_factory = ProviderFactory("dunscan")
     global parser

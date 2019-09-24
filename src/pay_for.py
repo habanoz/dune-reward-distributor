@@ -138,7 +138,7 @@ def main(args):
         pi.payment = pi.payment * MUTEZ
         payment_items.append(pi)
 
-        logger.info("Reward created for cycle %s address %s amount %f fee %f tz type %s",
+        logger.info("Reward created for cycle %s address %s amount %f fee %f dn type %s",
                     pi.cycle, pi.address, pi.payment, pi.fee, pi.type)
 
     payments_queue.put(PaymentBatch(None, 0, payment_items))
