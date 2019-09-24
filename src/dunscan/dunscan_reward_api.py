@@ -35,8 +35,8 @@ class DunscanRewardApiImpl(RewardApi):
 
         delegator_balance_dict = {}
         for dbalance in delegators_balance:
-            address = dbalance[0]["dn"]
-            balance = int(dbalance[1])
+            address = dbalance['account']['tz']
+            balance = int(dbalance['balance'])
 
             delegator_balance_dict[address] = balance
 
