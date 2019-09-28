@@ -93,8 +93,7 @@ class DunScanBlockApiImpl(BlockApi):
 
         return len(root) > 0
 
-    def get_next_cycle_first_level(self, current_cycle, verbose=False):
-
+    def get_current_level_hash(self, verbose=False):
         uri = self.head_api['HEAD_API_URL'].replace("%MIRROR%", str(self.mirror_selector.get_mirror()))
 
         if verbose:
@@ -111,6 +110,10 @@ class DunScanBlockApiImpl(BlockApi):
             logger.debug("Response from dunscan is: {}".format(root))
 
         level_hash = root["hash"]
+
+        return level_hash
+
+    def get_current_cycle_position(self, level_hash, verbose=False):
 
         uri = self.level_api['HEAD_API_URL'].replace("%MIRROR%", str(self.mirror_selector.get_mirror())).replace("%LEVEL%", level_hash)
 
@@ -129,4 +132,4 @@ class DunScanBlockApiImpl(BlockApi):
 
         cycle_position = int(root["cycle_position"])
 
-        return self.nw['BLOCKS_PER_CYCLE'] - cycle_position
+        return cycle_position

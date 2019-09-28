@@ -120,7 +120,6 @@ class PaymentProducer(threading.Thread, PaymentProducerABC):
             time.sleep(5)
 
             try:
-                current_level = self.block_api.get_current_level(verbose=self.verbose)
                 crrnt_cycle = self.block_api.get_current_cycle()
 
                 # create reports dir
@@ -165,10 +164,13 @@ class PaymentProducer(threading.Thread, PaymentProducerABC):
 
                     time.sleep(10)
 
-                    next_cycle_first_level = self.block_api.get_next_cycle_first_level(current_cycle=crrnt_cycle)
 
-                    # calculate number of blocks until end of current cycle
-                    nb_blocks_remaining = next_cycle_first_level - current_level
+                    level_hash = self.block_api.get_current_level_hash()
+                    current_cycle_position = self.block_api.get_current_cycle_position(level_hash=level_hash)
+
+                    logger.debug("Current level hash={}, current cycle position={}, block per cycle={}".format(level_hash,current_cycle_position, self.nw_config['BLOCKS_PER_CYCLE']))
+
+                    nb_blocks_remaining = self.nw_config['BLOCKS_PER_CYCLE'] - current_cycle_position
                     # plus offset. cycle beginnings may be busy, move payments forward
                     nb_blocks_remaining = nb_blocks_remaining + self.payment_offset
 

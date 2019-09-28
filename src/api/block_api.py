@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from math import floor
 
 
 class BlockApi(ABC):
@@ -16,9 +15,13 @@ class BlockApi(ABC):
         pass
 
     @abstractmethod
-    def get_next_cycle_first_level(self, current_cycle, verbose=False):
+    def get_revelation(self, pkh, verbose=False):
         pass
 
     @abstractmethod
-    def get_revelation(self, pkh, verbose=False):
+    def get_current_level_hash(self, verbose=False):
+        pass
+
+    @abstractmethod
+    def get_current_cycle_position(self, level_hash, verbose=False):
         pass

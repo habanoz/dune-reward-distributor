@@ -40,6 +40,19 @@ class RpcBlockApiImpl(BlockApi):
         return current_level+remaining_blocks
 
 
+    def get_current_level_hash(self, verbose=False):
+        _, response = self.wllt_clnt_mngr.send_request(COMM_HEAD.format(self.node_url))
+        head = parse_json_response(response)
+
+        return head['hash']
+
+    def get_current_cycle_position(self, level_hash, verbose=False):
+        _, response = self.wllt_clnt_mngr.send_request(COMM_HEAD.format(self.node_url))
+        head = parse_json_response(response)
+        cycle_position = int(head["metadata"]["level"]["cycle_position"])
+
+        return cycle_position
+
 
 from cli.wallet_client_manager import WalletClientManager
 
