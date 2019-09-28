@@ -24,6 +24,21 @@ class RpcBlockApiImpl(BlockApi):
         bool_revelation = "key" in manager_key.keys() and len(manager_key["key"]) > 0
         return bool_revelation
 
+    def get_current_cycle(self, verbose=False):
+        _, response = self.wllt_clnt_mngr.send_request(COMM_HEAD.format(self.node_url))
+        head = parse_json_response(response)
+        cycle = int(head["metadata"]["level"]["cycle"])
+        return cycle
+
+    def get_next_cycle_first_level(self, current_cycle, verbose=False):
+        _, response = self.wllt_clnt_mngr.send_request(COMM_HEAD.format(self.node_url))
+        head = parse_json_response(response)
+        cycle_position = int(head["metadata"]["level"]["cycle_position"])
+        current_level = int(head["metadata"]["level"]["level"])
+        remaining_blocks= self.nw['BLOCKS_PER_CYCLE']-cycle_position
+
+        return current_level+remaining_blocks
+
 
 
 from cli.wallet_client_manager import WalletClientManager

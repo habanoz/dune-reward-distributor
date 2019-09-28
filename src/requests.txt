@@ -1,0 +1,96 @@
+./dune-client rpc get http://127.0.0.1:8732/chains/main/blocks/head
+
+{ "protocol": "Pt24m4xiPbLDhVgVfABUjirbmda3yohdN82Sp9FeuAXJ4eV9otd",
+  "chain_id": "NetXJr1E3KSpaPR",
+  "hash": "BMUTn1JWLQ2qmVdeaJJK7r5oM34ghqhRR4rGsdkhmf3tDysNcCn",
+  "header":
+    { "level": 43173, "proto": 1,
+      "predecessor": "BLidNsgcoQTZGNYjHtVkLDuGHbeL153QuJ5j3gGnj1B2GwwFXXR",
+      "timestamp": "2019-09-28T08:07:41Z", "validation_pass": 4,
+      "operations_hash":
+        "LLoZSDJB4hdEgU6hzogiUcGDY2boRAxqf5nz6Y3gTrMDbJyVSwHFc",
+      "fitness": [ "00", "000000000014898f" ],
+      "context": "CoUwzHsX8bTEeE5ACR8BY6RuBUG2NpmR5C9Y8x6BosNP4jY3VcKe",
+      "priority": 2, "proof_of_work_nonce": "00000003ba098e1f",
+      "signature":
+        "sigpMbj3tAkGUcG8SjBjeRXRXCJm2MHxF5EcoEwxouhqFxaYmPqsCHexGTx1bvABA6m6FYqfmHVKLKXkHz5veVn18P1xcYL7" },
+  "metadata":
+    { "protocol": "Pt24m4xiPbLDhVgVfABUjirbmda3yohdN82Sp9FeuAXJ4eV9otd",
+      "next_protocol": "Pt24m4xiPbLDhVgVfABUjirbmda3yohdN82Sp9FeuAXJ4eV9otd",
+      "test_chain_status": { "status": "not_running" },
+      "max_operations_ttl": 8, "max_operation_data_length": 64000,
+      "max_block_header_length": 238,
+      "max_operation_list_length":
+        [ { "max_size": 32768, "max_op": 32 }, { "max_size": 32768 },
+          { "max_size": 135168, "max_op": 132 }, { "max_size": 524288 } ],
+      "baker": "dn1YJhqRgFWHKsaYE1JL8xyCrS8eeqXTusuu",
+      "level":
+        { "level": 43173, "level_position": 43172, "cycle": 21,
+          "cycle_position": 164, "voting_period": 5,
+          "voting_period_position": 2212, "expected_commitment": false },
+      "voting_period_kind": "proposal", "nonce_hash": null,
+      "consumed_gas": "0", "deactivated": [],
+      "balance_updates":
+        [ { "kind": "contract",
+            "contract": "dn1YJhqRgFWHKsaYE1JL8xyCrS8eeqXTusuu",
+            "change": "-512000000" },
+          { "kind": "freezer", "category": "deposits",
+            "delegate": "dn1YJhqRgFWHKsaYE1JL8xyCrS8eeqXTusuu", "cycle": 21,
+            "change": "512000000" },
+          { "kind": "freezer", "category": "rewards",
+            "delegate": "dn1YJhqRgFWHKsaYE1JL8xyCrS8eeqXTusuu", "cycle": 21,
+            "change": "16000000" } ] },
+  "operations":
+    [ [ { "protocol": "Pt24m4xiPbLDhVgVfABUjirbmda3yohdN82Sp9FeuAXJ4eV9otd",
+          "chain_id": "NetXJr1E3KSpaPR",
+          "hash": "ooxMxcwvMqZ1x7BWFBC2RKNbsaELGjt8T5348TyR9NXkYzvZAvf",
+          "branch": "BLidNsgcoQTZGNYjHtVkLDuGHbeL153QuJ5j3gGnj1B2GwwFXXR",
+          "contents":
+            [ { "kind": "endorsement", "level": 43172,
+                "metadata":
+                  { "balance_updates":
+                      [ { "kind": "contract",
+                          "contract": "dn1YJhqRgFWHKsaYE1JL8xyCrS8eeqXTusuu",
+                          "change": "-832000000" },
+                        { "kind": "freezer", "category": "deposits",
+                          "delegate": "dn1YJhqRgFWHKsaYE1JL8xyCrS8eeqXTusuu",
+                          "cycle": 21, "change": "832000000" },
+                        { "kind": "freezer", "category": "rewards",
+                          "delegate": "dn1YJhqRgFWHKsaYE1JL8xyCrS8eeqXTusuu",
+                          "cycle": 21, "change": "26000000" } ],
+                    "delegate": "dn1YJhqRgFWHKsaYE1JL8xyCrS8eeqXTusuu",
+                    "slots": [ 31, 30, 28, 20, 15, 13, 11, 9, 8, 5, 4, 2, 1 ] } } ],
+          "signature":
+            "sigaekE8KSfr1BsU4VkqWe6mkyny2ViHXNH3vBad5DBKZ5AFZXdz8e3adVpCAwRG4zh8BAgJFiJufwMqNypkN4ST4Dq2oNZs" } ],
+      [], [], [] ] }
+
+
+
+./dune-client rpc get http://127.0.0.1:8732/chains/main/blocks/head/context/constants
+Network Config: Testnet
+Warning:
+
+                 This is NOT the Dune Mainnet.
+
+     The node you are connecting to claims to be running on the
+               Dune Testnet DEVELOPMENT NETWORK.
+          Do NOT use your real keys on this network.
+          Testnet is a testing network, with free tokens.
+
+{ "proof_of_work_nonce_size": 8, "nonce_length": 32,
+  "max_revelations_per_block": 32, "max_operation_data_length": 64000,
+  "max_proposals_per_delegate": 20, "preserved_cycles": 3,
+  "blocks_per_cycle": 2048, "blocks_per_commitment": 32,
+  "blocks_per_roll_snapshot": 256, "blocks_per_voting_period": 8192,
+  "time_between_blocks": [ "30", "40" ], "endorsers_per_block": 32,
+  "hard_gas_limit_per_operation": "1600000",
+  "hard_gas_limit_per_block": "16000000",
+  "hard_gas_limit_to_pay_fees": "40000", "max_operation_ttl": 8,
+  "proof_of_work_threshold": "70368744177663",
+  "tokens_per_roll": "8000000000", "michelson_maximum_type_size": 4000,
+  "seed_nonce_revelation_tip": "125000", "origination_size": 257,
+  "block_security_deposit": "512000000",
+  "endorsement_security_deposit": "64000000", "block_reward": "16000000",
+  "endorsement_reward": "2000000", "cost_per_byte": "1000",
+  "hard_storage_limit_per_operation": "240000",
+  "test_chain_duration": "1966080" }

@@ -9,7 +9,7 @@ logger = main_logger
 default_network_config_map = {
     'MAINNET': {'NAME': 'MAINNET', 'NB_FREEZE_CYCLE': 5, BLOCK_TIME_IN_SEC: 60, 'BLOCKS_PER_CYCLE': 4096,
                 'BLOCKS_PER_ROLL_SNAPSHOT': 256},
-    'TESTNET': {'NAME': 'TESTNET', 'NB_FREEZE_CYCLE': 3, BLOCK_TIME_IN_SEC: 40, 'BLOCKS_PER_CYCLE': 2048,
+    'TESTNET': {'NAME': 'TESTNET', 'NB_FREEZE_CYCLE': 3, BLOCK_TIME_IN_SEC: 30, 'BLOCKS_PER_CYCLE': 2048,
                  'BLOCKS_PER_ROLL_SNAPSHOT': 256},
     'DEVNET': {'NAME': 'DEVNET', 'NB_FREEZE_CYCLE': 5, BLOCK_TIME_IN_SEC: 20, 'BLOCKS_PER_CYCLE': 128,
                 'BLOCKS_PER_ROLL_SNAPSHOT': 8},
@@ -17,7 +17,7 @@ default_network_config_map = {
 
 CONSTANTS_COMM = " rpc get http://{}/chains/main/blocks/head/context/constants"
 URL = "https://{}.tzbeta.net/chains/main/blocks/head/context/constants"
-url_prefix = {"MAINNET": "rpc", "ALPHANET": "rpcalpha", "ZERONET": "rpczero"}
+url_prefix = {"MAINNET": "rpc", "TESTNET": "rpcalpha", "DEVNET": "rpczero"}
 
 
 def init_network_config(network_name, config_client_manager, node_addr):
@@ -30,13 +30,14 @@ def init_network_config(network_name, config_client_manager, node_addr):
     except:
         logger.debug("Failed to get network configuration constants from a local node.")
 
-    try:
-        network_config_map[network_name] = get_network_config_from_public_node(network_name)
-        network_config_map[network_name]['NAME'] = network_name
-        logger.debug("Network configuration constants successfully loaded from a public node.")
-        return network_config_map
-    except:
-        logger.debug("Failed to get network configuration constants from a public node.")
+
+    #try:
+    #    network_config_map[network_name] = get_network_config_from_public_node(network_name)
+    #    network_config_map[network_name]['NAME'] = network_name
+    #    logger.debug("Network configuration constants successfully loaded from a public node.")
+    #    return network_config_map
+    #except:
+    #    logger.debug("Failed to get network configuration constants from a public node.")
 
     logger.debug("Default network configuration constants will be used.")
     return default_network_config_map
