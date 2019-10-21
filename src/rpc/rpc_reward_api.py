@@ -15,6 +15,8 @@ COMM_BLOCK = " rpc get http://{}/chains/main/blocks/{}/"
 COMM_SNAPSHOT = COMM_BLOCK + "context/raw/json/rolls/owner/snapshot/{}/"
 COMM_DELEGATE_BALANCE = " rpc get http://{}/chains/main/blocks/{}/context/contracts/{}"
 
+CYCLE_OFFSET = {'MAINNET':63, 'TESTNET':0, 'DEVNET':0}
+
 class RpcRewardApiImpl(RewardApi):
 
     def __init__(self, nw, baking_address, wllt_clnt_mngr, node_url, validate=True):
@@ -23,6 +25,7 @@ class RpcRewardApiImpl(RewardApi):
         self.blocks_per_cycle = nw['BLOCKS_PER_CYCLE']
         self.preserved_cycles = nw['NB_FREEZE_CYCLE']
         self.blocks_per_roll_snapshot = nw['BLOCKS_PER_ROLL_SNAPSHOT']
+        self.cycle_offset = CYCLE_OFFSET[nw['NAME']]
 
         self.baking_address = baking_address
         self.wllt_clnt_mngr = wllt_clnt_mngr
@@ -51,7 +54,7 @@ class RpcRewardApiImpl(RewardApi):
         logger.debug("Current level {}, head hash {}".format(current_level, head_hash))
 
         # Get last block in cycle where rewards are unfrozen
-        level_for_relevant_request = (cycle + self.preserved_cycles + 1) * self.blocks_per_cycle
+        level_for_relevant_request = (cycle + self.preserved_cycles + 1 - self.cycle_offset) * self.blocks_per_cycle
 
         logger.debug("Cycle {}, preserved cycles {}, blocks per cycle {}, level of interest {}"
                      .format(cycle, self.preserved_cycles, self.blocks_per_cycle, level_for_relevant_request))
@@ -129,13 +132,13 @@ class RpcRewardApiImpl(RewardApi):
 
         current_level, head_hash, current_cycle = self.__get_current_level(verbose)
 
-        level_for_snapshot_request = (cycle - self.preserved_cycles) * self.blocks_per_cycle + 1
+        level_for_snapshot_request = (cycle - self.preserved_cycles - self.cycle_offset) * self.blocks_per_cycle + 1
 
         logger.debug("Current level {}, head hash {}".format(current_level, head_hash))
         logger.debug("Cycle {}, preserved cycles {}, blocks per cycle {}, level of interest {}"
                      .format(cycle, self.preserved_cycles, self.blocks_per_cycle, level_for_snapshot_request))
 
-        block_level = cycle * self.blocks_per_cycle + 1
+        block_level = (cycle - self.cycle_offset) * self.blocks_per_cycle + 1
 
         if current_level - level_for_snapshot_request >= 0:
             request = COMM_SNAPSHOT.format(self.node_url, block_level, cycle)
@@ -148,7 +151,7 @@ class RpcRewardApiImpl(RewardApi):
                 logger.error("Too few or too many possible snapshots found!")
                 return ""
 
-            level_snapshot_block = (cycle - self.preserved_cycles - 2) * self.blocks_per_cycle + ( chosen_snapshot + 1) * self.blocks_per_roll_snapshot
+            level_snapshot_block = (cycle - self.preserved_cycles - 2 - self.cycle_offset) * self.blocks_per_cycle + ( chosen_snapshot + 1) * self.blocks_per_roll_snapshot
             request = COMM_BLOCK.format(self.node_url, head_hash, current_level - level_snapshot_block)
             _, comm_block_response = self.wllt_clnt_mngr.send_request(request)
             comm_block_response = comm_block_response.rstrip()
