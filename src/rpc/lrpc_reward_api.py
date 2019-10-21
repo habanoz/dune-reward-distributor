@@ -12,6 +12,7 @@ from util.rpc_utils import parse_json_response
 
 logger = main_logger
 
+CYCLE_OFFSET = {'MAINNET':63, 'TESTNET':0, 'DEVNET':0}
 
 class LRpcRewardApiImpl(RewardApi):
 
@@ -27,6 +28,7 @@ class LRpcRewardApiImpl(RewardApi):
         self.blocks_per_cycle = nw['BLOCKS_PER_CYCLE']
         self.preserved_cycles = nw['NB_FREEZE_CYCLE']
         self.blocks_per_roll_snapshot = nw['BLOCKS_PER_ROLL_SNAPSHOT']
+        self.cycle_offset = CYCLE_OFFSET[nw['NAME']]
 
         self.baking_address = baking_address
         self.node_url = node_url
@@ -61,7 +63,7 @@ class LRpcRewardApiImpl(RewardApi):
         reward_data["delegators_nb"] = len(reward_data["delegators"])
 
         # Get last block in cycle where rewards are unfrozen
-        level_of_last_block_in_unfreeze_cycle = (cycle+self.preserved_cycles+1) * self.blocks_per_cycle
+        level_of_last_block_in_unfreeze_cycle = (cycle+self.preserved_cycles+1-self.cycle_offset) * self.blocks_per_cycle
 
         logger.debug("Cycle {}, preserved cycles {}, blocks per cycle {}, last_block_cycle {}".format(cycle, self.preserved_cycles, self.blocks_per_cycle, level_of_last_block_in_unfreeze_cycle))
 
@@ -160,10 +162,10 @@ class LRpcRewardApiImpl(RewardApi):
 
     def __get_snapshot_block_hash(self, cycle, current_level):
 
-        snapshot_level = (cycle - self.preserved_cycles) * self.blocks_per_cycle + 1
+        snapshot_level = (cycle - self.preserved_cycles - self.cycle_offset) * self.blocks_per_cycle + 1
         logger.debug("Reward cycle {}, snapshot level {}".format(cycle,snapshot_level))
 
-        block_level = cycle * self.blocks_per_cycle + 1
+        block_level = (cycle - self.cycle_offset) * self.blocks_per_cycle + 1
 
         if current_level - snapshot_level >= 0:
             request = self.COMM_SNAPSHOT.format(self.node_url, block_level, cycle)
@@ -175,7 +177,7 @@ class LRpcRewardApiImpl(RewardApi):
                 logger.error("Too few or too many possible snapshots found!")
                 return ""
 
-            level_snapshot_block = (cycle - self.preserved_cycles - 2) * self.blocks_per_cycle + (chosen_snapshot+1) * self.blocks_per_roll_snapshot
+            level_snapshot_block = (cycle - self.preserved_cycles - 2 - self.cycle_offset) * self.blocks_per_cycle + (chosen_snapshot+1) * self.blocks_per_roll_snapshot
             return level_snapshot_block
             # request = self.COMM_BLOCK.format(self.node_url, level_snapshot_block)
             # response = self.do_rpc_request(request)
