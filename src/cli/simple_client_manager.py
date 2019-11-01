@@ -1,5 +1,6 @@
 from cli.cmd_manager import CommandManager
 from exception.client import ClientException
+from util.client_utils import get_node_rpc_addr
 
 
 class SimpleClientManager:
@@ -10,8 +11,8 @@ class SimpleClientManager:
         self.cmd_manager = CommandManager(verbose)
 
     def send_request(self, cmd, verbose_override=None, timeout=None):
-        whole_cmd = self.client_path + cmd
-
+        rpc_addr = get_node_rpc_addr ()
+        whole_cmd = self.client_path + rpc_addr + cmd
         return self.cmd_manager.execute(whole_cmd, verbose_override, timeout=timeout)
 
     def sign(self, bytes, key_name, verbose_override=None):

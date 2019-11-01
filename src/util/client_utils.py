@@ -6,8 +6,23 @@ from log_config import main_logger
 DOCKER_CLIENT_EXE = "%network%.sh"
 DOCKER_CLIENT_EXE_SUFFIX = " client"
 REGULAR_CLIENT_EXE = "dune-client"
+DEFAULT_NODE_RPC_ADDR = ""
+DEFAULT_NODE_RPC_PORT = ""
 
 logger = main_logger
+
+def init_node_rpc_addr (node_addr):
+    global DEFAULT_NODE_RPC_ADDR
+    global DEFAULT_NODE_RPC_PORT
+    if node_addr != "":
+        addr, port = node_addr.split(":", maxsplit=1)
+        DEFAULT_NODE_RPC_ADDR = addr
+        DEFAULT_NODE_RPC_PORT = port
+
+def get_node_rpc_addr ():
+    if (DEFAULT_NODE_RPC_ADDR != ""):
+        return (" -A " + DEFAULT_NODE_RPC_ADDR + " -P " + DEFAULT_NODE_RPC_PORT + " ")
+    return ""
 
 def get_client_path(search_paths, docker=None, network_name=None, verbose=None):
     client_exe = REGULAR_CLIENT_EXE
