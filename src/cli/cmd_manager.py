@@ -1,4 +1,4 @@
-from subprocess import STDOUT, check_output, TimeoutExpired, CalledProcessError
+from subprocess import check_output, TimeoutExpired, CalledProcessError
 
 from log_config import main_logger
 from util.client_utils import clear_terminal_chars
@@ -26,7 +26,7 @@ class CommandManager:
             logger.debug("--> Verbose : Command is |{}|".format(cmd))
 
         try:
-            output = check_output(cmd, shell=True, stderr=STDOUT, timeout=timeout, encoding='utf8')
+            output = check_output(cmd, shell=True, timeout=timeout, encoding='utf8')
         except TimeoutExpired as e:
             raise e
         except CalledProcessError as e:
