@@ -26,6 +26,7 @@ from util.client_utils import get_client_path
 from util.dir_utils import get_payment_root, \
     get_calculations_root, get_successful_payments_dir, get_failed_payments_dir
 from util.process_life_cycle import ProcessLifeCycle
+from util.client_utils import init_node_rpc_addr
 
 LINER = "--------------------------------------------"
 
@@ -80,6 +81,7 @@ def main(args):
 
     # 4. get network config
     config_client_manager = SimpleClientManager(client_path)
+    init_node_rpc_addr (args.node_addr);
     network_config_map = init_network_config(args.network, config_client_manager, args.node_addr)
     network_config = network_config_map[args.network]
 
